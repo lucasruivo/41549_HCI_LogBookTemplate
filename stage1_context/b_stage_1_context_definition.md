@@ -96,17 +96,19 @@ Task: Pesquisar uma rota
 
 ## B.2a. Method
 
-[What approach was followed to talk with users; what kind of users were considered. What was the goal of the interviews? What were the questions considered?]
+Fizemos um pequeno guião de pergunta chaves para os quais ambicionavamos respostas e fomos voltando a entrevista para elas deixando os entrevistados falar de outros problemas e também dar ideias. Tivemos facilidade com os users visto serem bastante extrovertidos. Foram consideradas estas perguntas:
+- Conseguem ver mais algum tipo de incapacidade motora a ser retratada nesta aplicação (tendo como base as nossas capacidades)?
+- Como seriam as melhores formas de fazer a avaliação de um espaço (likes, comentários, ...)?
 ## B.2b. Results
 
 >	This section tracks all informal user interviews, summarizing key insights and linking to detailed notes for each session. 
 
 ### Interview List 
-| Date       | Participant / Role | Key Insights                                                    | Link to Notes                |     |
-| ---------- | ------------------ | --------------------------------------------------------------- | ---------------------------- | --- |
-| 03-09-2000 | Bob / student      | Does most things on paper and would require a complete solution | [📄 Notes](interview-Bob.md) |     |
-| ...        |                    |                                                                 |                              |     |
-
+| Date       | Participant / Role | Key Insights                                                                 | Link to Notes                |     |
+| ---------- | ------------------ | ---------------------------------------------------------------------------- | ---------------------------- | --- |
+| 26-02-2025 | Rodrigo / student  | Botão que aumenta e diminui o zoom para pessoas sem muito controlo das mãos  |                              |     |
+| 26-02-2025 |  José / Student    | atualização em tempo real dos acessos (se continuam em bom estado)           |                              |     |
+|            |                    | fazer um forma de avaliação com distinções entre bons e maus comentários     |                              |     |
 ### Common Themes & Patterns 
 
 - **Recurring Problems:** 
