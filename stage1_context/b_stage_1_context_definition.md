@@ -27,7 +27,9 @@
 ### - Heuristic Evaluation
 
 #### Method
-[ Describe the method used for the heuristic evaluation: procedure, number of experts, heuristics, severity scale considered, how was consensus done.]
+A avaliação heurística foi conduzida seguindo os princípios de Nielsen. O processo consistiu na identificação de problemas de usabilidade com base em 10 heurísticas predefinidas. Cada problema encontrado foi avaliado em termos de gravidade, numa escala de 0 a 5 (onde 1 representa um problema menor e 3 um problema crítico).
+
+Após a avaliação individual, foi realizada uma sessão de consenso para consolidar as ideias e definir as recomendações para mitigar os problemas identificados.
 
 
 #### Individual Evaluations
@@ -65,30 +67,44 @@ Escolhemos a task "Pesquisar uma rota" visto que é de longe a mais importante e
 
 | Task                        | Subtasks                               |
 | --------------------------- | -------------------------------------- |
-| **1. Pesquisar uma rota**   | selecionar o item pesquisar            |
-|                             | digitar o destin pretendido            |
-|                             | escolher um dos serviços disponíveis   |
-|                             | escolher o tipo de transporte          |
-|                             | escolher uma das rotas possíveis       |
-|                             | iniciar navegação                      |
+| **1. Pesquisar uma rota**   | Selecionar o item pesquisar            |
+|                             | Digitar o destin pretendido            |
+|                             | Escolher um dos serviços disponíveis   |
+|                             | Escolher o tipo de transporte          |
+|                             | Escolher uma das rotas possíveis       |
+|                             | Iniciar navegação                      |
 
 
 #### Results
 
 Task: Pesquisar uma rota
 
-| Step # | Task/Action to Perform | Will User Know What to do at this step? (Yes/No) | Notes | If the user does the right thing, will they know it is progressing towards goal? (Yes/No) | Notes | Is Action Successful? (Yes/No) | Suggestions for Improvement |     |
-| ------ | ---------------------- | ------------------------------------------------ | ----- | ----------------------------------------------------------------------------------------- | ----- | ------------------------------ | --------------------------- | --- |
-| 1      | [Step 1 description]   | [Yes/No]                                         |       | [Yes/No]                                                                                  |       | [Yes/No]                       | [Suggestion 1]              |     |
-| 2      | [Step 2 description]   | [Yes/No]                                         |       | [Yes/No]                                                                                  |       | [Yes/No]                       | [Suggestion 2]              |     |
-| 3      | [Step 3 description]   | [Yes/No]                                         |       | [Yes/No]                                                                                  |       | [Yes/No]                       | [Suggestion 3]              |     |
-| ...    | [Further steps]        | [Yes/No]                                         |       | [Yes/No]                                                                                  |       | [Yes/No]                       | [Suggestions]               |     |
+| Step # | Task/Action to Perform | Will User Know What to do at this step? (Yes/No) | Notes | If the user does the right thing, will they know it is progressing towards goal? (Yes/No) | Notes | Is Action Successful? (Yes/No) | Suggestions for Improvement
+
+| 1      | Selecionar o icon pesquisar  		| Yes |       	| Yes |      	| Yes | [Suggestion 1]              |     |
+| 2      | Digitar o destino pretendido 		| Yes |       	| Yes |			| Yes | [Suggestion 2]              |     |
+| 3      | Escolher um dos serviços disponíveis | Yes |     	| Yes | 		| Yes | [Suggestion 3]              |     |
+| 4    	 | Escolher o tipo de transporte        | Yes |         | Yes |			| Yes | [Suggestion 4]              |     |
+| 5    	 | Escolher uma das rotas possíveis     | Yes |         | Yes |			| Yes | [Suggestion 5]              |     |
+| 6    	 | Iniciar navegação        			| Yes |         | Yes |			| Yes | [Suggestion 6]              |     |
 
 ## B.1c. Overall Analysis
 
-[Here, you should summarize the main findings for the competitor panorama, listing key points that are valuable to inform the design of your solution, and also make an HCI SWOT analysis for the main competitor, taking into consideration what you learned from the heuristic evaluatio, cognitive walkthrough, online reviews, user feedback, etc.]
+A análise revelou que os principais problemas enfrentados pelos utilizadores incluem a falta de opções de personalização na escolha de percursos e dificuldades na usabilidade do zoom. Além disso, a necessidade de uma atualização em tempo real das condições de acesso foi destacada como essencial.
 
----
+Análise SWOT
+| SWOT 			| Detalhes 																																		|
+| Forças 		| Interface intuitiva, suporte a múltiplos serviços de transporte, feedback positivo de utilizadores. 											|
+| Fraquezas		| Falta de personalização na escolha de percursos, tempos de carregamento elevados, dificuldade de acessibilidade. 								|
+| Oportunidades | Melhorar a acessibilidade com ajustes na interface, permitir seleção mais flexível de rotas, oferecer recomendações em tempo real. 			|
+| Ameaças 		| Concorrência de apps bem estabelecidas, resistência dos utilizadores a mudar para uma nova solução, mudanças nas políticas de transporte.  	|
+
+Recomendações para Melhorias:
+
+- Melhoria no Sistema de Zoom – Implementar transições suaves e opções para quem tem menor destreza manual.
+- Maior Personalização de Percursos – Permitir que o utilizador escolha percursos baseados em preferências pessoais.
+- Atualizações em Tempo Real – Mostrar alertas sobre mudanças nas condições de percurso ou acessibilidade.
+
 
 # B.2. Users
 >	For the users, there are two goals: 1) understand the current status of users in the domain you are addressing. How do they manage, what are the main tasks they do, if they use some tool for the purpose, what are current challenges, what might be improved, what might be new features, ...
@@ -99,6 +115,7 @@ Task: Pesquisar uma rota
 Fizemos um pequeno guião de pergunta chaves para os quais ambicionavamos respostas e fomos voltando a entrevista para elas deixando os entrevistados falar de outros problemas e também dar ideias. Tivemos facilidade com os users visto serem bastante extrovertidos. Foram consideradas estas perguntas:
 - Conseguem ver mais algum tipo de incapacidade motora a ser retratada nesta aplicação (tendo como base as nossas capacidades)?
 - Como seriam as melhores formas de fazer a avaliação de um espaço (likes, comentários, ...)?
+
 ## B.2b. Results
 
 >	This section tracks all informal user interviews, summarizing key insights and linking to detailed notes for each session. 
@@ -107,19 +124,20 @@ Fizemos um pequeno guião de pergunta chaves para os quais ambicionavamos respos
 | Date       | Participant / Role | Key Insights                                                                 | Link to Notes                |     |
 | ---------- | ------------------ | ---------------------------------------------------------------------------- | ---------------------------- | --- |
 | 26-02-2025 | Rodrigo / student  | Botão que aumenta e diminui o zoom para pessoas sem muito controlo das mãos  |                              |     |
-| 26-02-2025 |  José / Student    | atualização em tempo real dos acessos (se continuam em bom estado)           |                              |     |
-|            |                    | fazer um forma de avaliação com distinções entre bons e maus comentários     |                              |     |
+| 26-02-2025 |  José / Student    | Atualização em tempo real dos acessos (se continuam em bom estado)           |                              |     |
+|            |                    | Fazer um forma de avaliação com distinções entre bons e maus comentários     |                              |     |
+
 ### Common Themes & Patterns 
 
 - **Recurring Problems:** 
-	- Issue 1
-	- Issue 2
+	- Botão que aumenta e diminui o zoom mal implementado.
+	- Não há liberdade na escolha de percursos.
 - **Frequently Used Tools:** 
-	- Tool 1
-	- Tool 2
+	- Google APIs
+	- JavaScript
 - **Desired Features / Solutions:** 
-	- Feature 1
-	- Feature 2
+	- Botão que aumenta e diminui o zoom para pessoas sem muito controlo das mãos.
+	- Atualização em tempo real dos acessos (se continuam em bom estado).
 - --- 
 
 
