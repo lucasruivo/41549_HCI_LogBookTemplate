@@ -3,9 +3,9 @@
 - **Name of System:** [Acessibilidade 360 App] 
 - **Company/Developer:** [INR] 
 - **Website/Product Page:** [https://www.inr.pt/app-acessibilidade-360] 
-- **Version/Release Date:** [31/12/2024] 
+- **Version/Release Date:** [1.0.42 27/12/2024] 
 - **Platform(s) Supported:** [Mobile (Android)] 
-- **Target Audience:** Pessoas de mobilidade reduzida e outra que queiram ajudar a sinalizar caminhos
+- **Target Audience:** Pessoas de mobilidade reduzida e outra que queiram ajudar a sinalizar percursos
 
 --- 
 ## Core Functionality 

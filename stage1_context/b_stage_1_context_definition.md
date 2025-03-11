@@ -12,11 +12,10 @@
 ## B.1a. Competitors
 
 
-| **Competitor**    | **Description**                             | Information repository              |
-| ----------------- | ------------------------------------------- | ----------------------------------- |
-| [Amazon Shoes]    | [Online platform selling shoe laces]        | [[Competitor Analysis AmazonShoes]] |
-| [Fnac Atacadores] | [Smartphone app to buy and sell shoe laces] |                                     |
-| ...               |                                             |                                     |
+| **Competitor**           | **Description**                                                       | Information repository              |
+| ------------------------ | --------------------------------------------------------------------- | ----------------------------------- |
+| [Acessibilidade 360 App] | [plataforma com percursos acessiveis a pessoa de mobilidade reduzida] | [[Competitor Analysis]]             |
+| [Wheelmap]               | [app para encontrar e marcar locais acessíveis a cadeiras de rodas]   |                                     |
 
 
 
@@ -40,51 +39,43 @@
 
 - [expert2_heuristic_evaluation_workbook](heuristic_evaluations/expert2_heuristic_evaluation_workbook.md)
 
-- [expert3_heuristic_evaluation_workbook](heuristic_evaluations/expert3_heuristic_evaluation_workbook.md)
-
 
 #### Consensus
 
 >	After the individual analysis by each expert, all results should be gathered in a consensus table. If an expert has not found any of the problems found by other experts, they should analyse it, at this point, and give it a severity.
 
-| **Issue**       | **Expert 1** | Expert 2 | Expert 3 | Recommendations                             |
-| --------------- | ------------ | -------- | -------- | ------------------------------------------- |
-| Something wrong | 3            | 1        | 0        | Something could be done to the button to... |
-| Another thing   | 4            | 3        | 4        | Other thing to recommend                    |
-| ...             |              |          |          |                                             |
-
+| **Issue**                             | **Expert 1** | **Expert 2** | Recommendations                             |
+| ------------------------------------- | ------------ | ------------ | ------------------------------------------- |
+| Opções limitadas de meio de locomoção | 3            | 3            | 										    |
+| Limitação de escolhas de percursos    | 2            | 2            |                                             |
+| Falta de infraestruturas              | 2            | 3            |                                             |
+| Transições de zoom fracas             | 1            | 1            |                                             |
 
 
 ---
 ### - Cognitive Walkthrough
 
 #### Method
-[Briefly described  the method you used for the Cognitive Walkthrough analysis. ]
+
 
 #### Task Selection and Task Analysis
 
-[Which tasks did you select and why. What are the subtasks entailed for each ]
+Escolhemos a task "Pesquisar uma rota" visto que é de longe a mais importante e o ponto fulcral da app.
 
 
 | Task                        | Subtasks                               |
 | --------------------------- | -------------------------------------- |
-| **1. Buyng a grammar book** | Search for available grammar books     |
-|                             | Identify a specific book from the list |
-|                             | Add the selected book to the cart      |
-|                             | Proceeed to checkout                   |
-
-
-| Task                          | Subtasks                                |
-| ----------------------------- | --------------------------------------- |
-| **1. Booking a train ticket** | Select departure and destination cities |
-|                               | Choose travel date and time             |
-|                               | Pick a seat (if applicable)             |
-|                               | Confirm booking and make payment        |
+| **1. Pesquisar uma rota**   | selecionar o item pesquisar            |
+|                             | digitar o destin pretendido            |
+|                             | escolher um dos serviços disponíveis   |
+|                             | escolher o tipo de transporte          |
+|                             | escolher uma das rotas possíveis       |
+|                             | iniciar navegação                      |
 
 
 #### Results
 
-Task: [This is the task]
+Task: Pesquisar uma rota
 
 | Step # | Task/Action to Perform | Will User Know What to do at this step? (Yes/No) | Notes | If the user does the right thing, will they know it is progressing towards goal? (Yes/No) | Notes | Is Action Successful? (Yes/No) | Suggestions for Improvement |     |
 | ------ | ---------------------- | ------------------------------------------------ | ----- | ----------------------------------------------------------------------------------------- | ----- | ------------------------------ | --------------------------- | --- |

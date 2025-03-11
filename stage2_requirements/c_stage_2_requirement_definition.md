@@ -9,33 +9,33 @@
 
 # Personas
 
-## Persona: [Persona Name] 
+## Persona: [João Ferreira] 
 ### Summary 
 | Attribute        | Details                                       |
 | ---------------- | --------------------------------------------- |
 | **Photo**        | ![Persona Name\|100](personas/persona1.jpeg)  |
-| **Name**         | [Persona Name]                                |
-| **Age**          | [Persona Age]                                 |
-| **Occupation**   | [Job Title or Role]                           |
-| **Location**     | [City, Country]                               |
-| **Goals**        | [Brief summary of their main goals]           |
-| **Pain Points**  | [Key frustrations or challenges]              |
-| **Motivation**   | [One-line motivation or quote]                |
+| **Name**         | [João Ferreira]                               |
+| **Age**          | [35]                                          |
+| **Occupation**   | [Analista de TI]                              |
+| **Location**     | [Aveiro, Portugal]                            |
+| **Goals**        | [ser mais independente]                       |
+| **Pain Points**  | [Precisa de informações atualizadas]          |
+| **Motivation**   | [Quero ser independente e autónomo]           |
 | **Full Profile** | [📄 Read More](personas/persona1_template.md) |
 
 ---
-## Persona: [Persona Name] 
+## Persona: [Sofia Martins] 
 ### Summary 
 | Attribute        | Details                                       |
 | ---------------- | --------------------------------------------- |
 | **Photo**        | ![Persona Name](path/to/photo.jpg)            |
-| **Name**         | [Persona Name]                                |
-| **Age**          | [Persona Age]                                 |
-| **Occupation**   | [Job Title or Role]                           |
-| **Location**     | [City, Country]                               |
-| **Goals**        | [Brief summary of their main goals]           |
-| **Pain Points**  | [Key frustrations or challenges]              |
-| **Motivation**   | [One-line motivation or quote]                |
+| **Name**         | [Sofia Martins]                               |
+| **Age**          | [28]                                          |
+| **Occupation**   | [Fisioterapeuta]                              |
+| **Location**     | [Aveiro, Portugal]                            |
+| **Goals**        | [Trona a cidade mais acessível]               |
+| **Pain Points**  | [Não sabe onde fazê-lo]                       |
+| **Motivation**   | [Quero tornar Aveiro mais acessível]          |
 | **Full Profile** | [📄 Read More](personas/persona2_template.md) |
 
 ---
@@ -47,15 +47,14 @@
 # Scenarios
 
 
-## Scenario 1: Maria goes on a Museum Tour
+## Scenario 1: João vai ao café cos amigos
 
-[Maria had always loved modern art, but she often found museum visits overwhelming—so many exhibits, so much information, and little guidance on where to start. Today, she was visiting a contemporary art museum that had recently introduced an **interactive guide**.  ]
+João, que utiliza cadeira de rodas, quer encontrar-se com os amigos num café no centro da cidade. Ele não conhece bem o caminho e receia que existam obstáculos como escadas ou passeios irregulares. Sendo assim, ele abre a aplicação GoEasy, escolhe o seu tipo de mobilidade, introduz o destino, seleciona a forma de locomoção e recebe uma sugestão de rota tendo em conta rampas, passeios acessíveis, etc… João consegue chegar ao café sem dificuldades e ganha mais confiança para sair e explorar a cidade.
 
-[As she entered the museum, Maria received a notification on her phone, reminding her to launch the app. She opened it and was greeted with a personalized welcome screen. The system, aware of her general interests in **digital media and abstract art**, suggested a self-guided tour tailored to her preferences.  ]
+## Scenario 2: Sofia acompanha o paciente
 
-[Curious, Maria followed the suggested path. As she approached the first painting, the guide vibrated slightly—a prompt that additional content was available. Holding up the guide, she saw an **overlay** appear on the screen, revealing a time-lapse animation of the artist creating the piece. A small **audio clip** played, explaining the artist’s thought process and influences. Maria found this fascinating; it was as if the artwork was coming to life in front of her.  ]
+Sofia, fisioterapeuta, acompanha um paciente a uma consulta numa clínica localizada numa zona com pouca acessibilidade. O paciente tem dificuldades em subir degraus e em atravessar zonas sem passeios adequados. Sofia quer encontrar o trajeto mais acessível para evitar desconforto ou riscos para o paciente. Sofia usa o GoEasy para planear a rota, escolhendo um caminho sem escadas e com rampas seguras. Além disso, Sofia partilha a localização de uma entrada acessível na clínica diretamente na aplicação.
 
-[As she continued her tour, Maria **bookmarked** her favorite pieces, leaving notes about what she found intriguing. The system, recognizing her engagement, suggested another exhibit nearby featuring similar themes. Midway through her visit, she received a pop-up asking if she’d like a **short quiz** on the artworks she had explored, offering an interactive way to reflect on what she had learned.  ]
 
 ---
 
@@ -68,8 +67,18 @@
 
 ## C.1. Functional requirements
 
+ Facilidade de uso;
+ Portabilidade;
+ Capacidade e escalabilidade;
+
 
 ## C.2. Non-functional requirements
+O User deve poder:
+ Procurar um destino, quer pesquisando na barra de pesquisa quer por seleção direta no mapa;
+ Personalizar a conta: escolher o tipo de mobilidade que o afeta;
+ Selecionar o meio de locomoção até ao destino;
+ Ver em tempo real o progresso da sua viagem;
+ Dar feedback numa secção própria;
 
 
 ---

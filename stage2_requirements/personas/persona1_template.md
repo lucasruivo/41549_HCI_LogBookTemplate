@@ -1,21 +1,22 @@
 # ![Persona Name](personas/persona1.jpeg)  
-**Name:** [Persona Name]  
-**Age:** [Persona Age]  
-**Occupation:** [Job Title or Role]  
-**Location:** [City, Country]  
+**Name:** João Ferreira  
+**Age:** 35  
+**Occupation:** Analista de TI 
+**Location:** Aveiro,Portugal  
 
 ## Background  
-[Describe the persona's background, including their education, work experience, and any relevant personal history. This should be written as a short, engaging narrative that helps to contextualize the persona.]  
+João sofreu um acidente e desde então usa cadeira de rodas para se locomover.
+
 
 ## Daily Life  
-[Describe a typical day in their life. What do they do from morning to evening? How do they interact with technology, products, or services? What challenges do they face?]  
+Mora numa cidade grande e enfrenta dificuldades para encontrar trajetos acessíveis e seguros. 
 
 ## Goals & Needs  
-[Explain what the persona wants to achieve in their personal or professional life. What are their aspirations? What problems are they trying to solve?]  
+Quer se locomover de forma mais independente mas precisa de informações atualizadas. 
 
 ## Pain Points & Challenges  
 [Describe the main frustrations, obstacles, or inefficiencies they encounter related to the product or service you are designing for.]  
 
 ## Motivation  
 *"Why do they engage with this product or service?"*  
-[Summarize their core motivation in a compelling way. This could be a short paragraph or even a strong, direct quote that captures their drive.]  
+Quer se locomover de forma mais independente
