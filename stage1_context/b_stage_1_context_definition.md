@@ -77,27 +77,31 @@ Escolhemos a task "Pesquisar uma rota" visto que é de longe a mais importante e
 
 #### Results
 
-Task: Pesquisar uma rota
+**Task: Pesquisar uma rota**
 
-| Step # | Task/Action to Perform | Will User Know What to do at this step? (Yes/No) | Notes | If the user does the right thing, will they know it is progressing towards goal? (Yes/No) | Notes | Is Action Successful? (Yes/No) | Suggestions for Improvement
+| Step # | Task/Action to Perform               | Will User Know What to do at this step? (Yes/No) | Notes | If the user does the right thing, will they know it is progressing towards goal? (Yes/No) | Is Action Successful? (Yes/No) | Suggestions for Improvement |
+|--------|--------------------------------------|------------------------------------------------|-------|----------------------------------------------------------------------------------------|------------------------------|-----------------------------|
+| 1      | Selecionar o ícone pesquisar        | Yes                                            |       | Yes                                                                                    | Yes                          | Suggestion 1               |
+| 2      | Digitar o destino pretendido        | Yes                                            |       | Yes                                                                                    | Yes                          | Suggestion 2               |
+| 3      | Escolher um dos serviços disponíveis | Yes                                            |       | Yes                                                                                    | Yes                          | Suggestion 3               |
+| 4      | Escolher o tipo de transporte       | Yes                                            |       | Yes                                                                                    | Yes                          | Suggestion 4               |
+| 5      | Escolher uma das rotas possíveis    | Yes                                            |       | Yes                                                                                    | Yes                          | Suggestion 5               |
+| 6      | Iniciar navegação                   | Yes                                            |       | Yes                                                                                    | Yes                          | Suggestion 6               |
 
-| 1      | Selecionar o icon pesquisar  		| Yes |       	| Yes |      	| Yes | [Suggestion 1]              |     |
-| 2      | Digitar o destino pretendido 		| Yes |       	| Yes |			| Yes | [Suggestion 2]              |     |
-| 3      | Escolher um dos serviços disponíveis | Yes |     	| Yes | 		| Yes | [Suggestion 3]              |     |
-| 4    	 | Escolher o tipo de transporte        | Yes |         | Yes |			| Yes | [Suggestion 4]              |     |
-| 5    	 | Escolher uma das rotas possíveis     | Yes |         | Yes |			| Yes | [Suggestion 5]              |     |
-| 6    	 | Iniciar navegação        			| Yes |         | Yes |			| Yes | [Suggestion 6]              |     |
 
 ## B.1c. Overall Analysis
 
 A análise revelou que os principais problemas enfrentados pelos utilizadores incluem a falta de opções de personalização na escolha de percursos e dificuldades na usabilidade do zoom. Além disso, a necessidade de uma atualização em tempo real das condições de acesso foi destacada como essencial.
 
-Análise SWOT
-| SWOT 			| Detalhes 																																		|
-| Forças 		| Interface intuitiva, suporte a múltiplos serviços de transporte, feedback positivo de utilizadores. 											|
-| Fraquezas		| Falta de personalização na escolha de percursos, tempos de carregamento elevados, dificuldade de acessibilidade. 								|
-| Oportunidades | Melhorar a acessibilidade com ajustes na interface, permitir seleção mais flexível de rotas, oferecer recomendações em tempo real. 			|
-| Ameaças 		| Concorrência de apps bem estabelecidas, resistência dos utilizadores a mudar para uma nova solução, mudanças nas políticas de transporte.  	|
+### Análise SWOT
+
+| **SWOT**        | **Detalhes** |
+|-----------------|-------------|
+| **Forças**      | Interface intuitiva, suporte a múltiplos serviços de transporte, feedback positivo de utilizadores. |
+| **Fraquezas**   | Falta de personalização na escolha de percursos, tempos de carregamento elevados, dificuldade de acessibilidade. |
+| **Oportunidades** | Melhorar a acessibilidade com ajustes na interface, permitir seleção mais flexível de rotas, oferecer recomendações em tempo real. |
+| **Ameaças**     | Concorrência de apps bem estabelecidas, resistência dos utilizadores a mudar para uma nova solução, mudanças nas políticas de transporte. |
+
 
 Recomendações para Melhorias:
 
