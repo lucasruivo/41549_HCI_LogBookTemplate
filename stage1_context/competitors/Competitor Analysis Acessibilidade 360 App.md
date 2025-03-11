@@ -21,6 +21,6 @@
 ---
 
 ## Screenshots
-# ![Image example](competitors/competitor.jpeg) 
+# ![Image example](competitor.jpeg) 
 
 ## Online Reviews
