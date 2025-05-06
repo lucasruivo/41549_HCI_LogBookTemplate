@@ -1,29 +1,27 @@
 import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMap } from 'react-leaflet';
-import L from 'leaflet'
+import { useEffect } from 'react';
+import L from 'leaflet';
 import './MapView.css';
 
-
 // Corrigir os ícones do Leaflet (senão aparecem quadrados vazios)
-delete L.Icon.Default.prototype._getIconUrl
+delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png'
-})
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+});
 
 export default function MapView() {
-  const handleRecenter = () => {
-    console.log("Recentrar clicado");
-  };
-  
+  // Eventos de clique (apenas para debug)
   const handleMapType = () => {
-    console.log("Tipo de Mapa clicado");
+    console.log('Tipo de Mapa clicado');
   };
-  
-  const handleGlossario = () => {
-    console.log("Glossário clicado");
+
+  // Dispara evento personalizado para recentrar
+  const requestRecenter = () => {
+    window.dispatchEvent(new Event('recenter-map'));
   };
- 
+
   return (
     <div style={{ height: '100vh', width: '100%', position: 'relative' }}>
       <MapContainer
@@ -37,18 +35,8 @@ export default function MapView() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        <div className="map-control-panel">
-          <ZoomControl position="bottomleft" />
-          <button className="map-sub-button" onClick={handleRecenter}>
-            Recentrar
-          </button>
-          <button className="map-sub-button" onClick={handleMapType}>
-            Tipo de Mapa
-          </button>
-          <button className="map-sub-button" onClick={handleGlossario}>
-            Glossário
-          </button>
-        </div>
+        <ZoomControl position="topright" />
+        <RecenterControl />
 
         <Marker position={[40.6405, -8.6538]}>
           <Popup>
@@ -57,7 +45,12 @@ export default function MapView() {
         </Marker>
       </MapContainer>
 
-      {/* Botão de Definições */}
+      {/* Botões adicionais flutuantes */}
+      <div className="map-control-panel">
+        <button className="icon-button" onClick={handleMapType}>🗺️</button>
+        <button className="icon-button" onClick={requestRecenter}>🎯</button>
+      </div>
+
       <button
         className="map-button settings-button"
         onClick={() => console.log("Botão de Definições clicado")}
@@ -65,7 +58,6 @@ export default function MapView() {
         Definições
       </button>
 
-      {/* Botão de Conta */}
       <button
         className="map-button account-button"
         onClick={() => console.log("Botão de Conta clicado")}
@@ -76,23 +68,17 @@ export default function MapView() {
   );
 }
 
-function RecenterButton() {
+// Componente invisível que escuta o evento e recentra
+function RecenterControl() {
   const map = useMap();
 
-  const handleRecenter = () => {
-    map.setView([40.6405, -8.6538], 16); // Recentra com o mesmo zoom
-  };
+  useEffect(() => {
+    const recenter = () => {
+      map.setView([40.6405, -8.6538], 16);
+    };
+    window.addEventListener('recenter-map', recenter);
+    return () => window.removeEventListener('recenter-map', recenter);
+  }, [map]);
 
-  return (
-    <button
-      className="map-button recenter-button"
-      onClick={handleRecenter}
-    >
-      Recentrar
-    </button>
-  );
+  return null;
 }
-
-
-
-
