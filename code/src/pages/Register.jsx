@@ -1,53 +1,38 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const navigate = useNavigate();
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
-  const [erro, setErro] = useState('');
 
-  const handleRegister = (e) => {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [grau, setGrau] = useState("0");
+  const [apoio, setApoio] = useState("");
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-  
-    // Validações
-    if (!nome || !email || !pass) {
-      setErro("Preenche todos os campos!");
-      return;
-    }
-    if (!email.includes('@')) {
-      setErro("Email inválido!");
-      return;
-    }
-    if (pass.length < 6) {
-      setErro("A password deve ter pelo menos 6 caracteres.");
-      return;
-    }
-  
-    // Guardar no localStorage
     const user = {
       nome,
       email,
       pass,
+      grau,
+      apoio: grau === "0" ? null : apoio,
     };
     localStorage.setItem("user", JSON.stringify(user));
-  
-    setErro('');
-    navigate('/map');
+    navigate("/");
   };
-  
 
   return (
     <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
       <h2>Registo</h2>
-      {erro && <p style={{ color: "red" }}>{erro}</p>}
-      <form onSubmit={handleRegister}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Nome"
           value={nome}
           onChange={(e) => setNome(e.target.value)}
+          required
         /><br />
 
         <input
@@ -55,18 +40,44 @@ export default function Register() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         /><br />
 
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Palavra-passe"
           value={pass}
           onChange={(e) => setPass(e.target.value)}
+          required
         /><br />
 
-        <button type="submit">Criar Conta</button>
+        <label htmlFor="grau">Grau de apoio:</label><br />
+        <select
+          id="grau"
+          value={grau}
+          onChange={(e) => setGrau(e.target.value)}
+          required
+        >
+          <option value="0">0 - Contribuidor</option>
+          <option value="1">1 - Apoio leve (ex: moletas/canadianas, bengalas)</option>
+          <option value="2">2 - Apoio moderado (ex: scooters de mobilidade)</option>
+          <option value="3">3 - Apoio elevado (ex: andarilhos, cadeiras de rodas)</option>
+        </select><br />
+
+        {grau !== "0" && (
+          <>
+            <input
+              type="text"
+              placeholder="Tipo de objeto de apoio"
+              value={apoio}
+              onChange={(e) => setApoio(e.target.value)}
+              required
+            /><br />
+          </>
+        )}
+
+        <button type="submit">Registar</button>
       </form>
     </div>
   );
 }
-
