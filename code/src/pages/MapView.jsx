@@ -1,49 +1,98 @@
 import { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMap } from 'react-leaflet';
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  ZoomControl,
+  useMap,
+} from 'react-leaflet';
 import L from 'leaflet';
 import './MapView.css';
 
 // Corrigir os ícones do Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+  iconRetinaUrl:
+    'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
 const icons = {
-  localizacao: new L.Icon({ iconUrl: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png', iconSize: [32, 32] }),
-  educacao: new L.Icon({ iconUrl: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png', iconSize: [32, 32] }),
-  instituicoes: new L.Icon({ iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png', iconSize: [32, 32] }),
-  lazer: new L.Icon({ iconUrl: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png', iconSize: [32, 32] }),
-  restauracao: new L.Icon({ iconUrl: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png', iconSize: [32, 32] }),
+  localizacao: new L.Icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    iconSize: [32, 32],
+  }),
+  educacao: new L.Icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png',
+    iconSize: [32, 32],
+  }),
+  instituicoes: new L.Icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+    iconSize: [32, 32],
+  }),
+  lazer: new L.Icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
+    iconSize: [32, 32],
+  }),
+  restauracao: new L.Icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png',
+    iconSize: [32, 32],
+  }),
 };
 
 const locais = [
-  { id: 0, nome: "Universidade de Aveiro", categoria: "localizacao", lat: 40.6405, lng: -8.6538 },
-  { id: 1, nome: "PSP Aveiro", categoria: "instituicoes", lat: 40.6425, lng: -8.6545 },
-  { id: 2, nome: "McDonald's Aveiro", categoria: "restauracao", lat: 40.6395, lng: -8.6555 },
-  { id: 3, nome: "Parque Infante D. Pedro", categoria: "lazer", lat: 40.6370, lng: -8.6530 },
-  { id: 4, nome: "Escola Secundária José Estêvão", categoria: "educacao", lat: 40.6432, lng: -8.6485 }
+  {
+    id: 0,
+    nome: 'Universidade de Aveiro',
+    categoria: 'localizacao',
+    lat: 40.6405,
+    lng: -8.6538,
+  },
+  {
+    id: 1,
+    nome: 'PSP Aveiro',
+    categoria: 'instituicoes',
+    lat: 40.6425,
+    lng: -8.6545,
+  },
+  {
+    id: 2,
+    nome: "McDonald's Aveiro",
+    categoria: 'restauracao',
+    lat: 40.6395,
+    lng: -8.6555,
+  },
+  {
+    id: 3,
+    nome: 'Parque Infante D. Pedro',
+    categoria: 'lazer',
+    lat: 40.637,
+    lng: -8.653,
+  },
+  {
+    id: 4,
+    nome: 'Escola Secundária José Estêvão',
+    categoria: 'educacao',
+    lat: 40.6432,
+    lng: -8.6485,
+  },
 ];
 
 export default function MapView() {
-  const [pesquisa, setPesquisa] = useState("");
+  const [pesquisa, setPesquisa] = useState('');
   const [sugestoes, setSugestoes] = useState(locais);
 
   const handleMapType = () => console.log('Tipo de Mapa clicado');
-  const requestRecenter = () => {
-    window.dispatchEvent(new Event('recenter-map'));
-  };
-
+  const requestRecenter = () => window.dispatchEvent(new Event('recenter-map'));
   const zoomToPin = (local) => {
     window.dispatchEvent(new CustomEvent('zoom-to-pin', { detail: local }));
   };
 
   return (
-    <div style={{ height: '100vh', width: '100%', position: 'relative' }}>
-      <SearchBar locais={locais} onSelect={zoomToPin} />
-
+    <div className="relative w-full h-screen pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
+      {/* Mapa com marcadores */}
       <MapContainer
         center={[40.6405, -8.6538]}
         zoom={16}
@@ -62,8 +111,8 @@ export default function MapView() {
             icon={icons[local.categoria] || icons.localizacao}
           >
             <Popup>
-              <strong>{local.nome}</strong><br />
-              Categoria: {local.categoria}
+              <strong>{local.nome}</strong>
+              <br />Categoria: {local.categoria}
             </Popup>
           </Marker>
         ))}
@@ -72,24 +121,44 @@ export default function MapView() {
         <RecenterControl />
       </MapContainer>
 
-      <div className="map-control-panel">
-        <button className="icon-button" onClick={handleMapType}>🗘️</button>
+      {/* Botão Definições */}
+      <button className="map-button settings-button absolute top-4 left-4 z-[1000]">
+        ⚙️
+      </button>
+
+      {/* Perfil e controlos verticais */}
+      <div className="absolute top-40 right-4 z-[1000] flex flex-col items-center gap-2">
+        <button className="map-button account-button">👤</button>
         <button className="icon-button" onClick={requestRecenter}>🎯</button>
       </div>
 
-      <button
-        className="map-button settings-button"
-        onClick={() => console.log("Botão de Definições clicado")}
-      >
-        Definições
-      </button>
+      {/* Barra de pesquisa */}
+      <div className="absolute bottom-[calc(env(safe-area-inset-bottom)+1rem)] left-1/2 -translate-x-1/2 w-[90%] max-w-xl z-[1000]">
+        <div className="flex items-center bg-white rounded-full shadow px-4 py-2">
+          <div className="w-8 h-8 bg-indigo-200 rounded-full flex items-center justify-center font-bold text-sm mr-3">L</div>
+          <input
+            type="text"
+            value={pesquisa}
+            onChange={(e) => setPesquisa(e.target.value)}
+            placeholder="Pesquisar local..."
+            className="flex-1 bg-transparent outline-none text-gray-800"
+          />
+        </div>
 
-      <button
-        className="map-button account-button"
-        onClick={() => console.log("Botão de Conta clicado")}
-      >
-        Conta
-      </button>
+        {pesquisa && sugestoes.length > 0 && (
+          <ul className="suggestions-list">
+            {sugestoes
+              .filter((loc) =>
+                loc.nome.toLowerCase().includes(pesquisa.toLowerCase())
+              )
+              .map((loc) => (
+                <li key={loc.id} onClick={() => zoomToPin(loc)}>
+                  {loc.nome}
+                </li>
+              ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
@@ -118,47 +187,3 @@ function RecenterControl() {
 
   return null;
 }
-
-function SearchBar({ locais, onSelect }) {
-  const [query, setQuery] = useState("");
-  const [showSuggestions, setShowSuggestions] = useState(false);
-
-  const filtered = locais.filter(loc =>
-    loc.nome.toLowerCase().startsWith(query.toLowerCase())
-  );
-
-  const handleSelect = (local) => {
-    setQuery(local.nome);
-    setShowSuggestions(false);
-    onSelect(local);
-  };
-
-  return (
-    <div className="search-container">
-      <input
-        type="text"
-        placeholder="Pesquisar..."
-        className="search-input"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        onFocus={() => setShowSuggestions(true)}
-      />
-
-      {showSuggestions && query && (
-        <ul className="suggestions-list">
-          {filtered.length > 0 ? (
-            filtered.map(loc => (
-              <li key={loc.id} onClick={() => handleSelect(loc)}>
-                {loc.nome}
-              </li>
-            ))
-          ) : (
-            <li className="no-results">Nenhum resultado</li>
-          )}
-        </ul>
-      )}
-    </div>
-  );
-}
-
-

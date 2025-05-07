@@ -94,7 +94,11 @@
     font-style: italic;
 }
   
-  
+.leaflet-control-zoom {
+    top: 50% !important;
+    transform: translateY(350%);
+    right: 10px !important; /* ou o valor que quiseres */
+  }
   
   
   
