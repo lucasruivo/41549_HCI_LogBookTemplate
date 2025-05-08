@@ -3,15 +3,14 @@ import {
   MapContainer,
   TileLayer,
   Marker,
-  Popup,
   ZoomControl,
   useMap,
 } from 'react-leaflet';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import L from 'leaflet';
 import './MapView.css';
 
+// Corrigir ícones padrão
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
@@ -165,8 +164,10 @@ export default function MapView() {
   const [sugestoes, setSugestoes] = useState(locais);
   const [pesquisaAtiva, setPesquisaAtiva] = useState(false);
   const [centrarAnimacao, setCentrarAnimacao] = useState(false);
+  const [localSelecionado, setLocalSelecionado] = useState(null);
   const containerRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const requestRecenter = () => {
     window.dispatchEvent(new CustomEvent('zoom-to-pin', {
@@ -186,18 +187,17 @@ export default function MapView() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const location = useLocation();
-
-useEffect(() => {
-  if (location.state?.focus) {
-    const { lat, lng } = location.state.focus;
-    setTimeout(() => {
-      window.dispatchEvent(new CustomEvent('zoom-to-pin', {
-        detail: { lat, lng }
-      }));
-    }, 300); // dá tempo ao mapa para montar
-  }
-}, [location.state]);
+  useEffect(() => {
+    if (location.state?.focus) {
+      const { lat, lng } = location.state.focus;
+      setLocalSelecionado(location.state.focus); 
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('zoom-to-pin', {
+          detail: { lat, lng }
+        }));
+      }, 300); 
+    }
+  }, [location.state]);
 
   return (
     <div className="relative w-full h-screen pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
@@ -211,29 +211,33 @@ useEffect(() => {
           attribution='&copy; OpenStreetMap contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
         <Marker
           position={[localizacaoAtual.lat, localizacaoAtual.lng]}
           icon={userLocationIcon}
-        >
-          <Popup>Tu estás aqui</Popup>
-        </Marker>
+        />
+
         {locais.map((local) => (
           <Marker
             key={local.id}
             position={[local.lat, local.lng]}
             icon={icons[local.categoria] || icons.localizacao}
-          >
-            <Popup>
-              <strong>{local.nome}</strong>
-              <br />Categoria: {local.categoria}
-            </Popup>
-          </Marker>
+            eventHandlers={{
+              click: () => {
+                setLocalSelecionado(local);
+                setPesquisaAtiva(false);
+                window.dispatchEvent(new CustomEvent('zoom-to-pin', {
+                  detail: { lat: local.lat, lng: local.lng }
+                }));
+              },
+            }}
+          />
         ))}
+
         <ZoomControl position="topright" />
         <RecenterControl />
       </MapContainer>
 
-      {/* Botões laterais */}
       <button className="absolute top-4 left-4 z-[1000] bg-white shadow rounded-full p-3 text-2xl">⚙️</button>
       <button className="absolute top-4 right-4 z-[1000] bg-white shadow rounded-full p-3 text-2xl">👤</button>
 
@@ -246,60 +250,87 @@ useEffect(() => {
         </button>
       </div>
 
-      {pesquisaAtiva && (
-        <div className="absolute inset-0 bg-black/40 z-[1000]" onClick={() => setPesquisaAtiva(false)} />
+      {!localSelecionado && (
+        <div
+          ref={containerRef}
+          className={`fixed w-[90%] max-w-xl left-1/2 -translate-x-1/2 z-[1000] transition-all duration-300 ease-in-out ${
+            pesquisaAtiva ? 'top-4' : 'bottom-[calc(env(safe-area-inset-bottom)+1rem)]'
+          }`}
+        >
+          <div className="flex items-center bg-white rounded-full shadow px-6 py-4">
+            {pesquisaAtiva ? (
+              <button
+                onClick={() => setPesquisaAtiva(false)}
+                className="mr-4 text-xl"
+              >
+                ⬅️
+              </button>
+            ) : (
+              <div className="w-12 h-12 bg-indigo-200 rounded-full flex items-center justify-center font-bold text-xl mr-8">
+                L
+              </div>
+            )}
+
+            <input
+              type="text"
+              value={pesquisa}
+              onChange={(e) => setPesquisa(e.target.value)}
+              onFocus={() => setPesquisaAtiva(true)}
+              placeholder="Pesquisar local..."
+              className="flex-1 min-w-0 bg-transparent outline-none text-gray-800 text-lg"
+            />
+          </div>
+
+          {pesquisaAtiva && pesquisa && sugestoes.length > 0 && (
+            <ul className="bg-white rounded-b-xl shadow divide-y max-h-[50vh] overflow-y-auto mt-1">
+              {sugestoes
+                .filter((loc) => loc.nome.toLowerCase().includes(pesquisa.toLowerCase()))
+                .map((loc) => (
+                  <li
+                    key={loc.id}
+                    className="flex items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => navigate('/place', { state: loc })}
+                  >
+                    <span className="text-xl mr-4">📍</span>
+                    <span className="flex-1">{loc.nome}</span>
+                    <span className="text-pink-400 text-lg">♡</span>
+                  </li>
+                ))}
+            </ul>
+          )}
+        </div>
       )}
 
-      {/* Barra de pesquisa animada */}
-      <div
-        ref={containerRef}
-        className={`fixed w-[90%] max-w-xl left-1/2 -translate-x-1/2 z-[1000] transition-all duration-300 ease-in-out ${
-          pesquisaAtiva ? 'top-4' : 'bottom-[calc(env(safe-area-inset-bottom)+1rem)]'
-        }`}
-      >
-        <div className="flex items-center bg-white rounded-full shadow px-6 py-4">
-          {pesquisaAtiva ? (
+      {localSelecionado && (
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-xl bg-white rounded-xl shadow-lg z-[1000] overflow-hidden">
+          <div className="relative">
+            <img
+              src={localSelecionado.imagem}
+              alt={`Imagem de ${localSelecionado.nome}`}
+              className="w-full h-40 object-cover"
+            />
             <button
-              onClick={() => setPesquisaAtiva(false)}
-              className="mr-4 text-xl"
+              onClick={() => setLocalSelecionado(null)}
+              className="absolute top-2 right-2 bg-white rounded-full p-1 shadow text-sm"
             >
-              ⬅️
+              ✕
             </button>
-          ) : (
-            <div className="w-12 h-12 bg-indigo-200 rounded-full flex items-center justify-center font-bold text-xl mr-8">
-              L
-            </div>
-          )}
-
-          <input
-            type="text"
-            value={pesquisa}
-            onChange={(e) => setPesquisa(e.target.value)}
-            onFocus={() => setPesquisaAtiva(true)}
-            placeholder="Pesquisar local..."
-            className="flex-1 min-w-0 bg-transparent outline-none text-gray-800 text-lg"
-          />
+          </div>
+          <div
+            className="px-4 py-3 cursor-pointer"
+            onClick={() => {
+              navigate('/place', { state: localSelecionado });
+              setLocalSelecionado(null);
+            }}
+          >
+            <h3 className="text-lg font-semibold text-gray-800">
+              {localSelecionado.nome}
+            </h3>
+            <p className="text-sm text-gray-600">{localSelecionado.morada}</p>
+            <p className="text-sm text-gray-600">{localSelecionado.distancia}</p>
+          </div>
         </div>
-
-        {/* Sugestões visíveis só quando a pesquisa estiver ativa */}
-        {pesquisaAtiva && pesquisa && sugestoes.length > 0 && (
-          <ul className="bg-white rounded-b-xl shadow divide-y max-h-[50vh] overflow-y-auto mt-1">
-            {sugestoes
-              .filter((loc) => loc.nome.toLowerCase().includes(pesquisa.toLowerCase()))
-              .map((loc) => (
-                <li
-                  key={loc.id}
-                  className="flex items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"
-                  onClick={() => navigate('/place', { state: loc })}
-                >
-                  <span className="text-xl mr-4">📍</span>
-                  <span className="flex-1">{loc.nome}</span>
-                  <span className="text-pink-400 text-lg">♡</span>
-                </li>
-              ))}
-          </ul>
-        )}
-      </div>
+      )}
     </div>
   );
 }
@@ -317,7 +348,7 @@ function RecenterControl() {
 
     const zoomToPin = (e) => {
       const loc = e.detail;
-      map.flyTo([loc.lat, loc.lng], 18, {
+      map.flyTo([loc.lat - 0.00055, loc.lng], 18, {
         animate: true,
         duration: 1.5,
       });
