@@ -94,12 +94,21 @@
     font-style: italic;
 }
   
+/* ZoomControl mais visível e maior */
 .leaflet-control-zoom {
-    top: 50% !important;
-    transform: translateY(350%);
-    right: 10px !important; /* ou o valor que quiseres */
+    right: 10px !important; /* mantém alinhado à direita */
+    top: 50% !important;       /* centro vertical */
+    transform: translateY(120%) !important;
+    padding-top: 2.46rem;
+    z-index: 800 !important;
+    position: relative;
   }
-  
-  
-  
-  
+
+  /* Estilo visual personalizado */
+  .leaflet-control-zoom-in,
+  .leaflet-control-zoom-out {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 2rem !important;
+    line-height: 40px !important;
+  }
