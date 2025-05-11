@@ -38,9 +38,12 @@ export default function PlaceDetails() {
             <span className="text-xl mr-2">🕒</span>
             <span className="text-gray-800">{local.distancia}</span>
           </div>
-          <button className="text-indigo-600 font-medium flex items-center gap-1">
+          <button 
+            onClick={() => navigate('/reportar', { state: { local } })}
+            className="text-indigo-600 font-medium flex items-center gap-1"
+          >
             <span className="text-xl leading-none">📝</span>
-            <span className="underline">Reportar</span>
+            <span className="underline">Reportar</span> 
           </button>
         </div>
 
@@ -62,7 +65,10 @@ export default function PlaceDetails() {
 
       {/* Botão Definir como Destino */}
       <div className="fixed bottom-0 left-0 w-full bg-[#f5f4f8] px-6 pt-2 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] z-[1000]">
-        <button className="w-full bg-indigo-600 hover:bg-indigo-700 transition text-white py-3 rounded-xl text-lg font-semibold shadow-md">
+        <button 
+          onClick={() => navigate('/navegar', { state: { destino: local } })}
+          className="w-full bg-indigo-600 hover:bg-indigo-700 transition text-white py-3 rounded-xl text-lg font-semibold shadow-md"
+        >
           Definir como Destino
         </button>
       </div>

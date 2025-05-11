@@ -169,6 +169,14 @@ export default function MapView() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const handleSettingsClick = () => {
+    navigate('/settings');
+  };
+
+  const handleProfileClick = () => {
+    navigate('/profile');
+  };
+
   const requestRecenter = () => {
     window.dispatchEvent(new CustomEvent('zoom-to-pin', {
       detail: localizacaoAtual
@@ -238,8 +246,19 @@ export default function MapView() {
         <RecenterControl />
       </MapContainer>
 
-      <button className="absolute top-4 left-4 z-[1000] bg-white shadow rounded-full p-3 text-2xl">⚙️</button>
-      <button className="absolute top-4 right-4 z-[1000] bg-white shadow rounded-full p-3 text-2xl">👤</button>
+      <button 
+        className="absolute top-4 left-4 z-[1000] bg-white shadow rounded-full p-3 text-2xl"
+        onClick={handleSettingsClick}
+      >
+        ⚙️
+      </button>~
+
+      <button 
+        className="absolute top-4 right-4 z-[1000] bg-white shadow rounded-full p-3 text-2xl"
+        onClick={handleProfileClick}
+      >
+        👤
+      </button>
 
       <div className="absolute top-40 right-[1.4rem] z-[1000] flex flex-col items-center gap-2">
         <button

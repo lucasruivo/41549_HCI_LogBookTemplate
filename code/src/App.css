@@ -40,3 +40,33 @@
 .read-the-docs {
   color: #888;
 }
+
+.leaflet-routing-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  background-color: white !important;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  max-height: 60vh;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  overflow: hidden; /* evita scroll extra se não precisares */
+}
+
+
+
+
+
