@@ -251,7 +251,7 @@ export default function MapView() {
         onClick={handleSettingsClick}
       >
         ⚙️
-      </button>~
+      </button>
 
       <button 
         className="absolute top-4 right-4 z-[1000] bg-white shadow rounded-full p-3 text-2xl"

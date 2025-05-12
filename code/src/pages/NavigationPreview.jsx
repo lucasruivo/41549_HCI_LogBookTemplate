@@ -9,62 +9,81 @@ import 'leaflet/dist/leaflet.css';
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconUrl:        'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+  shadowUrl:      'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
 export default function NavigationPreview() {
-  const location = useLocation();
+  const { state } = useLocation();
   const navigate = useNavigate();
-  const destino = location.state?.destino;
+  const destino = state?.destino;
 
-  if (!destino) return <div>Destino não definido</div>;
+  if (!destino) {
+    return (
+      <div className="flex-1 flex items-center justify-center text-gray-500">
+        Destino não definido
+      </div>
+    );
+  }
 
   return (
-    <div className="p-4">
-      <div className="flex items-center mb-4">
-        <button onClick={() => navigate(-1)} className="mr-4">
-          <span className="text-xl">⬅️</span>
+    <div className="flex flex-col h-screen bg-gray-50">
+      {/* Header */}
+      <header className="flex items-center h-12 px-4 bg-white shadow-sm z-10">
+        <button
+          onClick={() => navigate(-1)}
+          className="p-2 rounded-full hover:bg-gray-100 transition"
+        >
+          <span className="text-xl text-indigo-600">⬅️</span>
         </button>
-        <h1 className="text-lg font-semibold">Definir Destino</h1>
+        <h1 className="ml-4 text-2xl font-semibold text-gray-800">
+          Definir Destino
+        </h1>
+      </header>
+
+      {/* Mapa com 60% de altura */}
+      <div className="h-[60vh] w-full">
+        <MapContainer
+          center={[destino.lat, destino.lng]}
+          zoom={15}
+          scrollWheelZoom
+          zoomControl={false}
+          className="w-full h-full"
+        >
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <Marker position={[destino.lat, destino.lng]} />
+          <RoutingMachine
+            from={{ lat: 40.633129, lng: -8.658757 }}
+            to={{ lat: destino.lat, lng: destino.lng }}
+            showInstructions={false}
+          />
+        </MapContainer>
       </div>
 
-      <MapContainer
-        center={[destino.lat, destino.lng]}
-        zoom={15}
-        scrollWheelZoom
-        style={{ height: '60vh', width: '100%' }}
+      {/* Info do local */}
+      <div className="bg-white px-6 py-4 space-y-2 shadow-inner">
+        <p className="text-lg font-medium text-gray-800">{destino.nome}</p>
+        <p className="text-sm text-gray-600">{destino.morada}</p>
+      </div>
+
+      {/* Botões no rodapé */}
+      <div
+        className="flex gap-4 px-6 
+                  pb-[calc(env(safe-area-inset-bottom)+1.5rem)] pt-4 bg-gray-50"
       >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <Marker position={[destino.lat, destino.lng]} />
-        <RoutingMachine
-          from={{ lat: 40.633129, lng: -8.658757 }}
-          to={{ lat: destino.lat, lng: destino.lng }}
-          showInstructions={false}
-        />
-      </MapContainer>
-
-      <div className="mt-4">
-        <p className="text-gray-700 font-medium">{destino.nome}</p>
-        <p className="text-sm text-gray-500">{destino.morada}</p>
-      </div>
-
-      <div className="flex justify-between mt-6">
         <button
           onClick={() => navigate('/gps', { state: { destino } })}
-          className="bg-green-600 text-white px-6 py-3 rounded-lg"
+          className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-4 rounded-xl text-lg font-semibold shadow-md transition"
         >
           Iniciar Navegação
         </button>
         <button
           onClick={() => navigate('/map')}
-          className="border px-6 py-3 rounded-lg"
+          className="flex-1 border-2 border-indigo-600 text-indigo-600 py-4 rounded-xl text-lg font-semibold hover:bg-indigo-50 transition"
         >
-          Voltar ao mapa
+          Voltar ao Mapa
         </button>
       </div>
     </div>
   );
 }
-
-
