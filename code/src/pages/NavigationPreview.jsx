@@ -1,9 +1,25 @@
-import React from 'react';
+// src/pages/NavigationPreview.jsx
+import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import RoutingMachine from './RoutingMachine';
 import 'leaflet/dist/leaflet.css';
+
+// Bolinha azul para “Tu estás aqui”
+const blueDotIcon = new L.DivIcon({
+  html: `<div style="
+    width: 20px;
+    height: 20px;
+    background: rgba(30,144,255,0.9);
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(30,144,255,0.8);
+  "></div>`,
+  className: '',
+  iconSize: [20, 20],
+  iconAnchor: [10, 10],
+});
 
 // Corrige ícones padrão do Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -13,10 +29,25 @@ L.Icon.Default.mergeOptions({
   shadowUrl:      'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
+// Componente que centra suavemente no ponto médio
+function CenterMidpoint({ origin, destination }) {
+  const map = useMap();
+  useEffect(() => {
+    const midLat = (origin.lat + destination.lat) / 2;
+    const midLng = (origin.lng + destination.lng) / 2;
+    map.flyTo([midLat, midLng], map.getZoom(), {
+      animate: true,
+      duration: 1.2,
+    });
+  }, [map, origin, destination]);
+  return null;
+}
+
 export default function NavigationPreview() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const destino = state?.destino;
+  const origem = { lat: 40.633129, lng: -8.658757 };
 
   if (!destino) {
     return (
@@ -51,12 +82,22 @@ export default function NavigationPreview() {
           className="w-full h-full"
         >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+          {/* origem: bolinha azul */}
+          <Marker position={[origem.lat, origem.lng]} icon={blueDotIcon} />
+
+          {/* destino: pin padrão */}
           <Marker position={[destino.lat, destino.lng]} />
+
+          {/* Traçado da rota */}
           <RoutingMachine
-            from={{ lat: 40.633129, lng: -8.658757 }}
-            to={{ lat: destino.lat, lng: destino.lng }}
+            from={origem}
+            to={destino}
             showInstructions={false}
           />
+
+          {/* centra no ponto intermédio */}
+          <CenterMidpoint origin={origem} destination={destino} />
         </MapContainer>
       </div>
 

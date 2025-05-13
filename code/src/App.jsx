@@ -10,6 +10,7 @@ import Glossario from './pages/Glossario';
 import ReportarProblema from './pages/ReportarProblema';
 import NavigationPreview from './pages/NavigationPreview';
 import GpsNavigation from './pages/GpsNavigation';
+import ChooseMode from './pages/ChooseMode';
 import './App.css';
 
 
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/settings/ajuda" element={<div>Ajuda e suporte</div>} />
         <Route path="/reportar" element={<ReportarProblema />} />
         <Route path="/navegar" element={<NavigationPreview />} />
+        <Route path="/choose-mode" element={<ChooseMode />} />
         <Route path="/gps" element={<GpsNavigation />} />
       </Routes>
     </Router>

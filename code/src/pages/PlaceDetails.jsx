@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowLeft } from 'lucide-react'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function PlaceDetails() {
@@ -22,7 +23,9 @@ export default function PlaceDetails() {
 
       {/* Cabeçalho */}
       <div className="flex items-center px-4 py-3 border-b border-indigo-200 bg-white shadow-sm">
-        <button onClick={() => navigate(-1)} className="text-xl text-indigo-500 mr-4">⬅️</button>
+      <button onClick={() => navigate(-1)} className="text-xl text-indigo-500 mr-4">
+          <ArrowLeft />
+        </button>
         <h1 className="text-2xl font-semibold text-gray-800">{local.nome}</h1>
       </div>
 
@@ -66,7 +69,7 @@ export default function PlaceDetails() {
       {/* Botão Definir como Destino */}
       <div className="fixed bottom-0 left-0 w-full bg-[#f5f4f8] px-6 pt-2 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] z-[1000]">
         <button 
-          onClick={() => navigate('/navegar', { state: { destino: local } })}
+          onClick={() => navigate('/choose-mode', { state: { local } })}
           className="w-full bg-indigo-600 hover:bg-indigo-700 transition text-white py-3 rounded-xl text-lg font-semibold shadow-md"
         >
           Definir como Destino

@@ -7,6 +7,7 @@ import {
   useMap,
 } from 'react-leaflet';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react'
 import L from 'leaflet';
 import './MapView.css';
 
@@ -278,12 +279,9 @@ export default function MapView() {
         >
           <div className="flex items-center bg-white rounded-full shadow px-6 py-4">
             {pesquisaAtiva ? (
-              <button
-                onClick={() => setPesquisaAtiva(false)}
-                className="mr-4 text-xl"
-              >
-                ⬅️
-              </button>
+              <button onClick={() => setPesquisaAtiva(false)} className="text-xl text-indigo-500 mr-4">
+          <ArrowLeft />
+        </button>
             ) : (
               <div className="w-12 h-12 bg-indigo-200 rounded-full flex items-center justify-center font-bold text-xl mr-8">
                 L
