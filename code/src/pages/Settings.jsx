@@ -26,7 +26,7 @@ export default function Settings() {
         </div>
 
         <div
-          onClick={() => navigate('/settings/ajuda')}
+          onClick={() => navigate('/settings/ajudasuporte')}
           className="flex items-center justify-between bg-gray-200 px-4 py-3 rounded cursor-pointer hover:bg-gray-300"
         >
           <span className="font-medium">Ajuda e suporte</span>

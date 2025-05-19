@@ -11,6 +11,10 @@ import ReportarProblema from './pages/ReportarProblema';
 import NavigationPreview from './pages/NavigationPreview';
 import GpsNavigation from './pages/GpsNavigation';
 import ChooseMode from './pages/ChooseMode';
+import AjudaSuporte from './pages/AjudaSuporte';
+import Preferencias from './pages/Preferencias';
+import Seguranca from './pages/Seguranca';
+import DadosUtilizador from './pages/DadosUtilizador';
 import './App.css';
 
 
@@ -24,12 +28,12 @@ export default function App() {
         <Route path="/map" element={<MapView />} />
         <Route path="/place" element={<PlaceDetails />} /> {/* 🔹 Nova rota */}
         <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/preferencias" element={<div>Preferências</div>} />
-        <Route path="/profile/seguranca" element={<div>Segurança</div>} />
-        <Route path="/profile/dados" element={<div>Dados do utilizador</div>} />
+        <Route path="/profile/preferencias" element={<Preferencias />} />
+        <Route path="/profile/seguranca" element={<Seguranca />} />
+        <Route path="/profile/dados" element={<DadosUtilizador />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/settings/glossario" element={<Glossario />} />
-        <Route path="/settings/ajuda" element={<div>Ajuda e suporte</div>} />
+        <Route path="/settings/ajudasuporte" element={<AjudaSuporte />} />
         <Route path="/reportar" element={<ReportarProblema />} />
         <Route path="/navegar" element={<NavigationPreview />} />
         <Route path="/choose-mode" element={<ChooseMode />} />
