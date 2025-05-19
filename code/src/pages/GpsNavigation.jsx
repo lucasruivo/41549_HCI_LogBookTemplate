@@ -6,8 +6,9 @@ import RoutingMachine from './RoutingMachine'
 import L from 'leaflet'
 import { Home, Flag } from 'lucide-react'
 import 'leaflet/dist/leaflet.css'
-import '../index.css'   // aqui está o .leaflet-routing-container { display: none !important; }
 
+// Coordenadas da origem (bolinha azul)
+const ORIGEM = { lat: 40.633129, lng: -8.658757 }
 
 // Bolinha azul para “Tu estás aqui”
 const userLocationIcon = new L.DivIcon({
@@ -49,7 +50,8 @@ export default function GpsNavigation() {
   return (
     <div className="relative w-full h-screen">
       <MapContainer
-        center={[destino.lat, destino.lng]}
+        // Agora centramo-nos na ORIGEM
+        center={[ORIGEM.lat, ORIGEM.lng]}
         zoom={15}
         scrollWheelZoom={false}
         zoomControl={false}
@@ -59,16 +61,16 @@ export default function GpsNavigation() {
 
         {/* origem: só bolinha azul */}
         <Marker
-          position={[40.633129, -8.658757]}
+          position={[ORIGEM.lat, ORIGEM.lng]}
           icon={userLocationIcon}
         />
 
         {/* destino: pin padrão */}
         <Marker position={[destino.lat, destino.lng]} />
 
-        {/* traça a rota e dispara onRoutesFound */}
+        {/* Traça a rota e dispara onRoutesFound */}
         <RoutingMachine
-          from={{ lat: 40.633129, lng: -8.658757 }}
+          from={ORIGEM}
           to={destino}
           onRoutesFound={setSteps}
         />

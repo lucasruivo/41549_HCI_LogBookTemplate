@@ -29,13 +29,17 @@ L.Icon.Default.mergeOptions({
   shadowUrl:      'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-// Componente que centra suavemente no ponto médio
-function CenterMidpoint({ origin, destination }) {
+// Componente que ajusta bounds animado para caber rota inteira
+function FitBounds({ origin, destination }) {
   const map = useMap();
   useEffect(() => {
-    const midLat = (origin.lat + destination.lat) / 2;
-    const midLng = (origin.lng + destination.lng) / 2;
-    map.flyTo([midLat, midLng], map.getZoom(), {
+    if (!origin || !destination) return;
+    const bounds = L.latLngBounds(
+      [origin.lat, origin.lng],
+      [destination.lat, destination.lng]
+    );
+    map.flyToBounds(bounds, {
+      padding: [60, 60],
       animate: true,
       duration: 1.2,
     });
@@ -47,7 +51,7 @@ export default function NavigationPreview() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const destino = state?.destino;
-  const origem = { lat: 40.633129, lng: -8.658757 };
+  const origem  = { lat: 40.633129, lng: -8.658757 };
 
   if (!destino) {
     return (
@@ -90,14 +94,10 @@ export default function NavigationPreview() {
           <Marker position={[destino.lat, destino.lng]} />
 
           {/* Traçado da rota */}
-          <RoutingMachine
-            from={origem}
-            to={destino}
-            showInstructions={false}
-          />
+          <RoutingMachine from={origem} to={destino} showInstructions={false} />
 
-          {/* centra no ponto intermédio */}
-          <CenterMidpoint origin={origem} destination={destino} />
+          {/* Ajusta zoom/centro para cobertura total */}
+          <FitBounds origin={origem} destination={destino} />
         </MapContainer>
       </div>
 
