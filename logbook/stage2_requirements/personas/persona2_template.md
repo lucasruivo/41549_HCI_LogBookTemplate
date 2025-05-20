@@ -15,7 +15,7 @@ Costuma acompanhar o percurso de alguns, conhecendo bem a acessibilidade de muit
 Compartilhar informações sobre acessibilidade precisa de uma plataforma onde fazê-lo
 
 ## Pain Points & Challenges  
-[Describe the main frustrations, obstacles, or inefficiencies they encounter related to the product or service you are designing for.]  
+Sente que não existe uma boa maneira de puder ajudar muitas pessoas com o conhecimento que possui 
 
 ## Motivation  
 *"Why do they engage with this product or service?"*  

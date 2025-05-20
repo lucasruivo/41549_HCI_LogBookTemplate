@@ -6,7 +6,12 @@
 
 # Prototype
 
+INSERIR IMAGEM
 
+No desenvolvimento da aplicação foi usado:
+Ferramentas: VS Code (development)
+Linguagens: HTML, CSS, JavaScript
+Livrarias: React.jsx, Leaflet, Vite
 
 # E.X. User Evaluation
 

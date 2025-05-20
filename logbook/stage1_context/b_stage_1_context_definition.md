@@ -68,7 +68,7 @@ Escolhemos a task "Pesquisar uma rota" visto que é de longe a mais importante e
 | Task                        | Subtasks                               |
 | --------------------------- | -------------------------------------- |
 | **1. Pesquisar uma rota**   | Selecionar o item pesquisar            |
-|                             | Digitar o destin pretendido            |
+|                             | Digitar o destino pretendido            |
 |                             | Escolher um dos serviços disponíveis   |
 |                             | Escolher o tipo de transporte          |
 |                             | Escolher uma das rotas possíveis       |

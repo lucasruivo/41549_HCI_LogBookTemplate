@@ -15,7 +15,7 @@ Mora numa cidade grande e enfrenta dificuldades para encontrar trajetos acessív
 Quer se locomover de forma mais independente mas precisa de informações atualizadas. 
 
 ## Pain Points & Challenges  
-[Describe the main frustrations, obstacles, or inefficiencies they encounter related to the product or service you are designing for.]  
+A maioria das apps não se preocupa muito com este tipo de casos ou não possui informação atualizada em tempo real das rotas
 
 ## Motivation  
 *"Why do they engage with this product or service?"*  
