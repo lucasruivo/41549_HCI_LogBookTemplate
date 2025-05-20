@@ -1,4 +1,3 @@
-// src/pages/ChooseMode.jsx
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
@@ -15,9 +14,18 @@ export default function ChooseMode() {
     return <div className="flex-1 flex items-center justify-center text-gray-500">Local não definido</div>
   }
 
-  // valores fixos (podes ajustar se quiseres)
-  const distancia = '1.2 km'
-  const duracao = '8 min'
+  // Define valores diferentes por modo
+  const tempoPorModo = {
+    1: '3.1 km',  // a pé
+    2: '4 km',   // bus
+    3: '4.2 km',   // carro
+  }
+
+  const distanciaPorModo = {
+    1: '15 min',
+    2: '8 min',
+    3: '5 min',
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-[#f5f4f8]">
@@ -76,9 +84,9 @@ export default function ChooseMode() {
 
         {/* Info fixa de distância/tempo */}
         {mode !== 0 && (
-          <div className="text-center mb-8">
-            <p className="text-lg font-medium text-gray-800">{distancia}</p>
-            <p className="text-sm text-gray-600 mt-1">{duracao}</p>
+          <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+6rem)] left-0 w-full bg-[#f5f4f8] text-center px-6 z-[1000]">
+            <p className="text-lg font-medium text-gray-800">{distanciaPorModo[mode]}</p>
+            <p className="text-sm text-gray-600 mt-1">{tempoPorModo[mode]}</p>
           </div>
         )}
       </div>

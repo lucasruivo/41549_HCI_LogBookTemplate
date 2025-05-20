@@ -15,14 +15,16 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-indigo-100 flex flex-col items-center px-6 pt-12">
-      {/* Logótipo */}
-      <div className="w-28 h-28 rounded-full border-2 border-black flex items-center justify-center text-4xl font-bold bg-white mb-10">
-        L
-      </div>
+<div className="h-screen bg-indigo-100 flex flex-col items-center px-6 overflow-hidden">
+  <div className="w-28 h-28 rounded-full border-2 border-black flex items-center justify-center text-4xl font-bold bg-white mb-10 flex-shrink-0 mt-4">
+    L
+  </div>
 
-      {/* Formulário */}
-      <form onSubmit={handleRegister} className="bg-white p-8 rounded-xl shadow-md w-full max-w-md flex flex-col gap-6">
+  <form
+    onSubmit={handleRegister}
+    className="bg-white p-8 rounded-xl shadow-md w-full max-w-md flex flex-col gap-6 overflow-y-auto mt-0"
+    style={{ maxHeight: 'calc(100vh - 160px)' }}
+  >
         <h2 className="text-2xl font-semibold text-center">Registo</h2>
 
         <div className="flex flex-col gap-1">

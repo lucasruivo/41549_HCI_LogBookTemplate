@@ -5,6 +5,7 @@ import {
   Marker,
   ZoomControl,
   useMap,
+  useMapEvent,
 } from 'react-leaflet';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react'
@@ -166,9 +167,62 @@ export default function MapView() {
   const [pesquisaAtiva, setPesquisaAtiva] = useState(false);
   const [centrarAnimacao, setCentrarAnimacao] = useState(false);
   const [localSelecionado, setLocalSelecionado] = useState(null);
+  const [longPressPosition, setLongPressPosition] = useState(null);
+  const timerRef = useRef(null);
+
   const containerRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
+
+  // HANDLERS DEFINIDOS AQUI para aceder ao estado
+  const onMapMouseDown = (e) => {
+    timerRef.current = setTimeout(() => {
+      const latlng = e.latlng;
+      setLongPressPosition(latlng);
+      setLocalSelecionado({
+        nome: 'Local selecionado',
+        lat: latlng.lat,
+        lng: latlng.lng,
+        morada: `Lat: ${latlng.lat.toFixed(5)}, Lng: ${latlng.lng.toFixed(5)}`,
+        distancia: 'Desconhecida',
+        estado: '',
+        imagem: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png', // usa imagem válida
+      });
+      window.dispatchEvent(new CustomEvent('zoom-to-pin', {
+        detail: { lat: latlng.lat, lng: latlng.lng }
+      }));
+      setPesquisaAtiva(false);
+    }, 700); // duração para detectar long press
+  };
+
+  const onMapMouseUp = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  };
+
+  const onMapTouchStart = (e) => {
+    // Se o e.originalEvent.touches existir, é toque
+    timerRef.current = setTimeout(() => {
+      // Pega a posição do toque
+      const touch = e.originalEvent.touches[0];
+      const map = e.target; // pode ser o mapa
+      if (!map) return;
+      // Converte a posição do toque para latlng
+      const latlng = map.mouseEventToLatLng(touch);
+      setLongPressPosition(latlng);
+      // Mais lógica aqui
+    }, 700);
+  };
+
+  const onMapTouchEnd = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  };
+
 
   const handleSettingsClick = () => {
     navigate('/settings');
@@ -215,7 +269,13 @@ export default function MapView() {
         zoom={16}
         style={{ height: '100%', width: '100%' }}
         zoomControl={false}
-      >
+        eventHandlers={{
+          mousedown: onMapMouseDown,
+          mouseup: onMapMouseUp,
+          touchstart: onMapTouchStart,
+          touchend: onMapTouchEnd,
+        }}
+          >
         <TileLayer
           attribution='&copy; OpenStreetMap contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -245,6 +305,20 @@ export default function MapView() {
 
         <ZoomControl position="topright" />
         <RecenterControl />
+
+        {longPressPosition && (
+          <Marker
+            position={[longPressPosition.lat, longPressPosition.lng]}
+            icon={new L.Icon({
+              iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+              iconSize: [25, 41],
+              iconAnchor: [12, 41],
+              popupAnchor: [1, -34],
+              shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+              shadowSize: [41, 41],
+            })}
+          />
+        )}
       </MapContainer>
 
       <button 
