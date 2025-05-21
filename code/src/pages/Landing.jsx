@@ -14,9 +14,11 @@ export default function Landing() {
 
       {/* Círculo centrado entre o topo e a secção inferior */}
       <div className="z-20 mt-24 mb-10">
-        <div className="w-32 h-32 rounded-full border-2 border-black flex items-center justify-center text-5xl font-bold bg-white">
-          L
-        </div>
+      <img
+     src="/logo.jpeg"
+     alt="Logo"
+     className="w-48 h-48 rounded-full border-2 border-black object-cover bg-white"
+    />
       </div>
 
       {/* Secção inferior (Go Easy + botões) */}

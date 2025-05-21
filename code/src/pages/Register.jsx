@@ -16,9 +16,13 @@ export default function Register() {
 
   return (
 <div className="h-screen bg-indigo-100 flex flex-col items-center px-6 overflow-hidden">
-  <div className="w-28 h-28 rounded-full border-2 border-black flex items-center justify-center text-4xl font-bold bg-white mb-10 flex-shrink-0 mt-4">
-    L
-  </div>
+<div className="w-28 h-28 rounded-full border-2 border-black flex items-center justify-center bg-white mb-10 overflow-hidden">
+  <img
+    src="/logo.jpeg"
+    alt="Logótipo"
+    className="w-full h-full object-cover"
+  />
+</div>
 
   <form
     onSubmit={handleRegister}

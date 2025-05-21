@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
+import { ArrowLeft } from 'lucide-react'
 import L from 'leaflet';
 import RoutingMachine from './RoutingMachine';
 import 'leaflet/dist/leaflet.css';
@@ -65,11 +66,8 @@ export default function NavigationPreview() {
     <div className="flex flex-col h-screen bg-gray-50">
       {/* Header */}
       <header className="flex items-center h-12 px-4 bg-white shadow-sm z-10">
-        <button
-          onClick={() => navigate(-1)}
-          className="p-2 rounded-full hover:bg-gray-100 transition"
-        >
-          <span className="text-xl text-indigo-600">⬅️</span>
+      <button onClick={() => navigate(-1)} className="text-xl text-indigo-500 mr-4">
+          <ArrowLeft />
         </button>
         <h1 className="ml-4 text-2xl font-semibold text-gray-800">
           Definir Destino

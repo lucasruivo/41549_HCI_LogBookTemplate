@@ -1,4 +1,4 @@
-# ![Persona Name](personas/persona2.jpeg)  
+# ![Persona Name](persona2.jpeg)  
 **Name:** Sofia Martins 
 **Age:** 28  
 **Occupation:** Fisioterapeuta

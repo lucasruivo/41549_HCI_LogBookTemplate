@@ -1,4 +1,4 @@
-# ![Persona Name](personas/persona1.jpeg)  
+# ![Persona Name](persona1.jpeg)  
 **Name:** João Ferreira  
 **Age:** 35  
 **Occupation:** Analista de TI 

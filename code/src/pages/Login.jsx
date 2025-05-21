@@ -15,9 +15,13 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-indigo-100 flex flex-col items-center px-6 pt-12">
       {/* Logótipo */}
-      <div className="w-28 h-28 rounded-full border-2 border-black flex items-center justify-center text-4xl font-bold bg-white mb-10">
-        L
-      </div>
+      <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-black mb-10">
+  <img
+    src="/logo.jpeg"
+    alt="Logo"
+    className="w-full h-full object-cover"
+  />
+</div>
 
       {/* Formulário */}
       <form onSubmit={handleLogin} className="bg-white p-8 rounded-xl shadow-md w-full max-w-md flex flex-col gap-6">

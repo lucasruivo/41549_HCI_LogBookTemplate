@@ -6,7 +6,7 @@ Work carried out by:
 -->
 # *HCI Project Logbook*
 
-**Title of the project**: [Title goes here]
+**Title of the project**: GoEasy
 **Team:**
 - Student 1: [Name and Number] 
 - Student 2; [Name and Number]

@@ -357,9 +357,11 @@ export default function MapView() {
           <ArrowLeft />
         </button>
             ) : (
-              <div className="w-12 h-12 bg-indigo-200 rounded-full flex items-center justify-center font-bold text-xl mr-8">
-                L
-              </div>
+              <img
+              src="/logo.jpeg"
+              alt="Logo"
+              className="w-12 h-12 border border-black bg-indigo-200 rounded-full object-cover mr-8"
+/>
             )}
 
             <input
