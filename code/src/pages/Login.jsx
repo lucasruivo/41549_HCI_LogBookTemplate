@@ -49,6 +49,16 @@ export default function Login() {
           />
         </div>
 
+        <div className="text-right mt-1">
+            <button
+              type="button"
+              onClick={() => navigate('/recuperar-palavra-passe')}
+              className="text-sm text-indigo-500 hover:underline"
+            >
+              Esqueceu-se da palavra-passe?
+            </button>
+        </div>
+
         <div className="flex justify-between mt-4">
           <button
             type="button"
